@@ -81,8 +81,11 @@ client.on('message', function(message) {
 client.on('message', message => {
   if (message.content === '!rate') {
     message.channel.send("Как вам наш проект?")
-    message.react('👍').then(() => message.react('👎'));
-
+    .then(function (message) {
+          message.react('👍');
+          message.react('👎');
+        }).catch(function() {
+      });
     const filter = (reaction, user) => {
       return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
     };
