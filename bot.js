@@ -19,7 +19,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === '!link') {
-    message.channel.send('Cсылки:\nКоллекция - \nФорум - \nСайт - \nДонат - \nЮтуб создателя :3 - ');
+    msg.channel.send('Cсылки:\nКоллекция - \nФорум - \nСайт - \nДонат - \nЮтуб создателя :3 - ');
   }; 
 });
 
