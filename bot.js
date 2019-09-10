@@ -13,7 +13,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content === '!pj') {
-    msg.reply('\nКоманды: !servers !owner !about !quiz !rate !link \nАдмин команды: !event !clear\nГифки: !win !nyancat !nice !fuckyou');
+    msg.reply('\nКоманды: !servers !owner !about !quiz !rate !link \nАдмин команды: !say !event !clear\nГифки: !win !nyancat !nice !fuckyou');
   }; 
 });
 
@@ -83,27 +83,37 @@ client.on('message', message => {
     message.channel.send("Как вам наш проект?")
     .then(function (message) {
           message.react('👍').then(() => message.react('👎'));
-        }).catch(function() {
-      });
-    const filter = (reaction, user) => {
-      return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
-    };
-    
-    message.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
-      .then(collected => {
-        const reaction = collected.first();
-    
-        if (reaction.emoji.name === '👍') {
-          message.reply('Спасисо за оценку :3');
-        } else {
-          message.reply('Будем стараться для вас :3');
-        }
-      })
-      .catch(collected => {
-        message.reply('Время вышло.');
-      });
-  }
+
+	const filter = (reaction, user) => {
+	return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
+};
+
+	message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+	.then(collected => {
+		const reaction = collected.first();
+
+		if (reaction.emoji.name === '👍') {
+			message.delete(1000); //Supposed to delete message
+			message.reply('Спасибо за оценку :3');
+		} else {
+			message.delete(1000); //Supposed to delete message
+			message.reply('Мы будем стараться для вас :)');
+		}
+		})
+	.catch(collected => {
+		message.delete(1000); //Supposed to delete message
+		message.reply('Время для оценки вышло.');
 });
+
+client.on('message', message => {
+   if (message.content.startsWith("!say ")) {
+	if (message.member.hasPermission("MANAGE_MESSAGES")) {
+      		message.delete(1000); //Supposed to delete message
+     		message.channel.send(message.content.slice(5, message.content.length));
+	}
+   }
+});
+
 
 client.on('message', message => {
   if (message.content === '!owner') {
