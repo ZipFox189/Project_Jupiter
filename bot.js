@@ -80,29 +80,32 @@ client.on('message', function(message) {
 
 client.on('message', message => {
   if (message.content === '!rate') {
-    message.channel.send("Как вам наш проект?")
+    message.channel.send('Вам нравиться наш проект? :3 ')
     .then(function (message) {
-          message.react('👍').then(() => message.react('👎'));
-
-	const filter = (reaction, user) => {
-	return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
+      message.react('👍').then(() => message.react('👎'));
+    }).catch(function() {
+   });
+const filter = (reaction, user) => {
+    return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
+message.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
+    .then(collected => {
+        const reaction = collected.first();
 
-	message.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
-	.then(collected => {
-		const reaction = collected.first();
-
-		if (reaction.emoji.name === '👍') {
-			message.delete(1000); //Supposed to delete message
-			message.reply('Спасибо за оценку :3');
-		} else {
-			message.delete(1000); //Supposed to delete message
-			message.reply('Мы будем стараться для вас :)');
-		}
-		})
-	.catch(collected => {
-		message.delete(1000); //Supposed to delete message
-		message.reply('Время для оценки вышло.');
+        if (reaction.emoji.name === '👍') {
+            message.delete(1000); //Supposed to delete message
+            message.reply('Спасибо за отзыв :3');
+        }
+        else {
+            message.delete(1000); //Supposed to delete message
+            message.reply('Мы будем стараться для вас :3');
+        }
+    })
+    .catch(collected => {
+        message.delete(1000); //Supposed to delete message
+        message.reply('А мы думали, что ты оценишь наш проект :(');
+    });
+  }
 });
 
 client.on('message', message => {
