@@ -13,7 +13,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content === '!pj') {
-    msg.reply('\nКоманды: !servers !owner !about !quiz !rate !link \nАдмин команды: !say !event !clear\nГифки: !win !nyancat !nice !fuckyou');
+    msg.reply('\nКоманды: !servers !owner !about !quiz !link \nАдмин команды: !say !event !clear\nГифки: !win !nyancat !nice !fuckyou');
   }; 
 });
 
