@@ -13,7 +13,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content === '!pj') {
-    msg.reply('\nКоманды: !darkrp !owner !about !quiz !rate !link \nАдмин команды: !event !clear\nГифки: !win !nyancat !nice !fuckyou');
+    msg.reply('\nКоманды: !servers !owner !about !quiz !rate !link \nАдмин команды: !event !clear\nГифки: !win !nyancat !nice !fuckyou');
   }; 
 });
 
@@ -101,7 +101,7 @@ client.on('message', message => {
         }
       })
       .catch(collected => {
-        message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
+        message.reply('Время вышло.');
       });
   }
 });
@@ -113,8 +113,8 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-  if (message.content === '!darkrp') {
-      message.channel.send('В данный момент сервер закрыт.');
+  if (message.content === '!servers') {
+      message.channel.send('В данный момент сервера закрыти.');
   }
 });
 
