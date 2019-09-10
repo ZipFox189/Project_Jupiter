@@ -82,8 +82,7 @@ client.on('message', message => {
   if (message.content === '!rate') {
     message.channel.send("Как вам наш проект?")
     .then(function (message) {
-          message.react('👍');
-          message.react('👎');
+          message.react('👍').then(() => message.react('👎'));
         }).catch(function() {
       });
     const filter = (reaction, user) => {
