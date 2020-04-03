@@ -1,11 +1,12 @@
 const { Client, Attachment, RichEmbed } = require('discord.js');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+/*
 const item = quiz[Math.floor(Math.random() * quiz.length)];
 const filter = response => {
 	return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
 };
-
+*/
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
