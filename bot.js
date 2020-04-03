@@ -59,7 +59,7 @@ client.on('message', function(message) {
         message.channel.fetchMessages()
         .then(function(list){
           message.channel.bulkDelete(list);
-	}
+         });
       }, 300000);   
     }   
     else {
